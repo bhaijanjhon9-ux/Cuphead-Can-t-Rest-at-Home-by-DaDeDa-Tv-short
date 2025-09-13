@@ -1,0 +1,16 @@
+name: YouTube Live Stream
+on:
+  workflow_dispatch:
+
+jobs:
+  stream:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install ffmpeg
+        run: sudo apt update && sudo apt install -y ffmpeg
+      - name: Start Stream
+        run: |
+          ffmpeg -re -stream_loop -1 -i Cuphead Can’t Rest at Home by DaDeDa Tv\
+          -c copy -f flv rtmp://a.rtmp.youtube.com/live2/t8q5-tkm3-ekg8-kq02-9801
+
